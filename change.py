@@ -26,7 +26,7 @@ def install(repo_path):
     any_updates = True
 
 # read tracking file
-track = open("/usr/etc/track.csv", "r")
+track = open("/usr/local/etc/track.csv", "r")
 for line in f:
     tracking_data = line.split(',')
     name = tracking_data[0]

@@ -3,6 +3,6 @@
 chmod +x change.py
 cp change.py /usr/local/bin/change.py
 
-touch /usr/etc/track.csv
+touch /usr/local/etc/track.csv
 
 crontab monitor.cron
