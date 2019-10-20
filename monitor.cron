@@ -1,2 +1,2 @@
 MAILTO=me@yianni.dev
-0 * * * * /usr/local/bin/change.py
+0 * * * * /usr/bin/python3 /usr/local/bin/change.py
