@@ -14,10 +14,10 @@ def process_repo(url, name):
         install(repo_location)
 
 def check_for_updates(repo_path, name):
-    completed_process = subprocess.call(["/usr/bin/git", "diff", "remotes/origin/HEAD"], cwd=repo_path);
-    if (completed_process.returncode != 0 ):
+    exit_code = subprocess.call(["/usr/bin/git", "diff", "remotes/origin/HEAD"], cwd=repo_path);
+    if (exit_code != 0 ):
         # Update
-        completed_process = subprocess.call(["/usr/bin/git", "pull"], cwd=repo_path);
+        subprocess.call(["/usr/bin/git", "pull"], cwd=repo_path);
         install(repo_path, name)
         print("updating " + name)
 
