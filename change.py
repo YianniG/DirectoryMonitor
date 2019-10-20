@@ -14,7 +14,7 @@ def process_repo(url, name):
         install(repo_location)
 
 def check_for_updates(repo_path, name):
-    subprocess.call(["/usr/bin/git", "fetch"], cwd=repo_path);
+    subprocess.call(["/usr/bin/git", "fetch"], cwd=repo_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL);
     exit_code = subprocess.call("git -C " + repo_path + " status | grep -q 'up to date'", shell=True)
     if (exit_code != 0 ):
         # Update
