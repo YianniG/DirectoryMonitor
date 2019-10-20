@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-chmod +x change.pl
-cp change.pl /usr/local/bin/change.pl
+chmod +x change.py
+cp change.py /usr/local/bin/change.py
+
+touch /usr/etc/track.csv
 
 crontab monitor.cron
