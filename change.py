@@ -4,7 +4,7 @@ import subprocess
 any_updates = False
 
 def process_repo(url, name):
-    repo_location = "/tmp/" + name
+    repo_location = "/root/" + name
     if (os.path.isdir(repo_location)):
         # if dir exists - check update
         check_for_updates(repo_location, name)
