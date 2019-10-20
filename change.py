@@ -10,7 +10,7 @@ def process_repo(url, name):
         check_for_updates(repo_location, name)
     else:
         # clone gh repo to temp dir
-        subprocess.call(["/usr/bin/git", "clone", url, repo_location]);
+        subprocess.call(["/usr/bin/git", "clone", url, repo_location], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL);
         install(repo_location)
 
 def check_for_updates(repo_path, name):
@@ -18,12 +18,13 @@ def check_for_updates(repo_path, name):
     exit_code = subprocess.call("git -C " + repo_path + " status | grep -q 'up to date'", shell=True)
     if (exit_code != 0 ):
         # Update
-        subprocess.call(["/usr/bin/git", "pull"], cwd=repo_path);
+        subprocess.call(["/usr/bin/git", "pull"], cwd=repo_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL);
         install(repo_path)
         print("updating " + name)
 
 def install(repo_path):
-    subprocess.call([repo_path + "/install.sh"])
+    global any_updates
+    subprocess.call(["/bin/bash", repo_path + "/install.sh"], cwd=repo_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     any_updates = True
 
 # read tracking file
@@ -37,4 +38,5 @@ for line in track:
 track.close()
 
 if (any_updates):
+    print("applying updates")
     subprocess.call(["/sbin/reboot"])
