@@ -19,11 +19,12 @@ def check_for_updates(repo_path, name):
     if (exit_code != 0 ):
         # Update
         subprocess.call(["/usr/bin/git", "pull"], cwd=repo_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL);
-        install(repo_path)
         print("updating " + name)
+        install(repo_path)
 
 def install(repo_path):
     global any_updates
+    os.system('chmod +x ' + repo_path + '/install.sh')
     subprocess.call(["/bin/bash", repo_path + "/install.sh"], cwd=repo_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     any_updates = True
 
